@@ -1,11 +1,11 @@
 ---
 MXNET_VERSION: "mxnet"
-output_path: "./output/rfcn/voc"
+output_path: "./output/rfcn/voc_"
 symbol: resnet_v1_101_rfcn
 gpus: '0'
 CLASS_AGNOSTIC: true
 SCALES:
-- 600
+- 800
 - 1000
 default:
   frequent: 100
@@ -39,15 +39,19 @@ network:
   - gamma
   - beta
   ANCHOR_RATIOS:
-  - 0.5
-  - 1
-  - 2
+  - 0.38
+  - 0.65
+  - 1.10
+  - 1.66
+  - 1.68
+  - 2.13
   ANCHOR_SCALES:
+  - 2
   - 4
-  - 8
-  - 16
-  - 32
-  NUM_ANCHORS: 12
+  - 6
+  - 7
+  - 10
+  NUM_ANCHORS: 30
 dataset:
   NUM_CLASSES: 2
   dataset: PascalVOC

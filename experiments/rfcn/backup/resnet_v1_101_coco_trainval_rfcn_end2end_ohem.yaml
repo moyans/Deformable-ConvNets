@@ -1,8 +1,8 @@
 ---
 MXNET_VERSION: "mxnet"
-output_path: "./output/rfcn/voc"
+output_path: "./output/rfcn/coco"
 symbol: resnet_v1_101_rfcn
-gpus: '0'
+gpus: '0,1,2,3,4,5,6,7'
 CLASS_AGNOSTIC: true
 SCALES:
 - 600
@@ -49,12 +49,12 @@ network:
   - 32
   NUM_ANCHORS: 12
 dataset:
-  NUM_CLASSES: 2
-  dataset: PascalVOC
-  dataset_path: "./data/VOCdevkit"
-  image_set: 2007_trainval
+  NUM_CLASSES: 81
+  dataset: coco
+  dataset_path: "./data/coco"
+  image_set: train2014+val2014
   root_path: "./data"
-  test_image_set: 2007_test
+  test_image_set: test-dev2015
   proposal: rpn
 TRAIN:
   lr: 0.0005
@@ -62,7 +62,7 @@ TRAIN:
   warmup: true
   warmup_lr: 0.00005
   # typically we will use 8000 warmup step for single GPU for COCO
-  warmup_step: 8000
+  warmup_step: 1000
   begin_epoch: 0
   end_epoch: 8
   model_prefix: 'rfcn_coco'
